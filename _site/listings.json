@@ -1,0 +1,18 @@
+[
+  {
+    "listing": "/articles/index.html",
+    "items": []
+  },
+  {
+    "listing": "/research/index.html",
+    "items": [
+      "/research/articles/diversity_washing/index.html",
+      "/research/articles/staggered_did/index.html",
+      "/research/articles/bagel/index.html",
+      "/research/articles/dual_class/index.html",
+      "/research/articles/slr/index.html",
+      "/research/working_papers/antitakeover/index.html",
+      "/research/working_papers/activism/index.html"
+    ]
+  }
+]

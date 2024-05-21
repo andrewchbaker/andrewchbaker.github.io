@@ -1,0 +1,24 @@
+---
+title: "Andrew C. Baker"
+subtitle: "Assistant Professor, Berkeley Law"
+email: andrew.baker@berkeley.edu
+image: files/Baker-Portrait.jpg
+about:
+  template: trestles
+format:
+  html: 
+    page-layout: article
+---
+
+I am an Assistant Professor at Berkeley Law School, and a recent PhD and law graduate from Stanford University. My research interests include corporate governance, empirical legal studies, and law and economics/finance.
+
+## Education
+
+**Stanford University** \| Stanford, CA\
+PhD in Business Administration \| 2021
+
+**Stanford University** \| Stanford, CA\
+Juris Doctor \| 2017
+
+**Georgetown University**\| Washington, DC\
+BSc in International Economics \| 2009

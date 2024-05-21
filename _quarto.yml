@@ -1,0 +1,40 @@
+project:
+  type: website
+  output-dir: docs
+  
+  resources:
+    - "files/**"
+
+website:
+  title: "Andrew C. Baker"
+  sidebar: false
+  reader-mode: true
+  navbar:
+    background: primary
+    search: true
+    left:
+      - href: index.qmd
+        text: "About"
+      - href: "files/Baker_CV.pdf"
+        text: "CV"
+      - text: "Research"
+        file: research/index.qmd
+    right:
+      - icon: twitter
+        href: https://twitter.com/andrew___baker
+      - icon: linkedin
+        href: https://linkedin.com/in/andrew-baker-09bb6326
+      - icon: github
+        href: https://github.com/andrewchbaker
+      - icon: envelope
+        href: "mailto:andrew.baker@berkeley.edu"
+
+format:
+  html:
+    theme: flatly
+    fontsize: 1.4em
+    css: styles.css
+    toc: true
+    
+editor: visual
+

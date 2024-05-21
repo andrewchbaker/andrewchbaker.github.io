@@ -3,6 +3,7 @@ title: "Andrew C. Baker"
 subtitle: "Assistant Professor, Berkeley Law"
 email: andrew.baker@berkeley.edu
 image: files/Baker-Portrait.jpg
+description: andrew.baker@berkeley.edu
 about:
   template: trestles
 format:

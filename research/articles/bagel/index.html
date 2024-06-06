@@ -7,10 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andrew C. Baker">
-<meta name="dcterms.date" content="2016-01-01">
-<meta name="description" content="Stanford Law Review 68 2016">
+<meta name="author" content="Jonah B. Gelbach">
+<meta name="dcterms.date" content="2020-09-08">
+<meta name="description" content="Journal of Law, Finance, and Accounting 5(2) 2020 (Joint with Jonah B. Gelbach)">
 
-<title>Andrew C. Baker - How Much Should We Trust Staggered Difference-in-Differences Estimates?</title>
+<title>Andrew C. Baker - Machine Learning and Predicted Returns for Event Studies in Securities Litigation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,22 +90,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<script src="../../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -125,8 +126,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -136,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Andrew C. Baker</span>
     </a>
   </div>
@@ -146,13 +148,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html">About</a>
+    <a class="nav-link" href="../../../index.html">About</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../files/Baker_CV.pdf">CV</a>
+    <a class="nav-link" href="../../../files/Baker_CV.pdf">CV</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../research/index.html">Research</a>
+    <a class="nav-link" href="../../../research/index.html">Research</a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -209,21 +211,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How Much Should We Trust Staggered Difference-in-Differences Estimates?</h1>
+<h1 class="title">Machine Learning and Predicted Returns for Event Studies in Securities Litigation</h1>
 </div>
 
 <div>
   <div class="description">
-    <em>Stanford Law Review</em> 68 2016
+    <em>Journal of Law, Finance, and Accounting</em> 5(2) 2020 (Joint with Jonah B. Gelbach)
   </div>
 </div>
 
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Authors</div>
   <div class="quarto-title-meta-heading">Affiliation</div>
   
     <div class="quarto-title-meta-contents">
     Andrew C. Baker 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Berkeley Law School
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    Jonah B. Gelbach 
   </div>
     <div class="quarto-title-meta-contents">
         <p class="affiliation">
@@ -238,10 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 1, 2016</p>
+      <p class="date">September 8, 2020</p>
     </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/10.1561/108.00000047">10.1561/108.00000047</a>
+      </p>
+    </div>
+  </div>
   </div>
   
 
@@ -250,35 +268,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="links" class="level2">
 <h2 class="anchored" data-anchor-id="links">Links</h2>
 <ul>
-<li><a href="2016_SLR_Note.pdf">Paper</a></li>
-<li><a href="Codes.zip">Code</a></li>
-<li><a href="Data.zip">Data</a></li>
+<li><a href="bagel.pdf">Paper</a></li>
+<li><a href="https://github.com/andrewchbaker/BaGel">Code</a></li>
 </ul>
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Lawsuits brought pursuant to section 10(b) of the Securities and Exchange Act depend on the reliability of a statistical tool called an event study to adjudicate issues of reliance, materiality, loss causation, and damages. Although judicial acceptance of the event study technique is pervasive, there has been little empirical analysis of the ability of event studies to produce reliable results when applied to a single company’s security.</p>
-<p>Using data from the recent financial crisis, this Note demonstrates that the standard-model event study used in most court proceedings can lead to biased inferences sanctioned through the Daubert standard of admissibility for expert testimony. In particular, in the presence of broad market volatility, a base event study will cause too many returns to be identified as statistically significant. Even recently proposed variations of the event study model specifically designed to address violations of the statistical assumptions of an event study will not completely correct this bias.</p>
-<p>This Note proposes two alternative forms of event studies that are capable of creating statistically reliable results and should be adopted by courts in instances where there is cause to believe that market volatility has increased. Over previous decades, the judiciary has steadily moved toward a reliance on empirics and expert testimony in overseeing complex civil cases. Yet there has been surprisingly little research accompanying this judicial deference on the ability of statistical evidence to produce the promised result. This Note calls into question whether this movement has been beneficial from a logical or empirical perspective, but it demonstrates that alternative techniques that can aid the finder of fact in resolving these disputes—regardless of market trends—may in fact exist.</p>
+<p>We investigate the use of machine learning (ML) and other robust estimation techniques in event studies conducted on single securities for the purpose of securities litigation. Single-firm event studies are widely used in civil litigation, with billions of dollars in settlements hinging on the outcome of the exercise. We find that regularization (equivalently, penalized estimation) can yield noticeable improvements in both the variance of event-date abnormal returns and significance-test power. Thus we believe that there is a role for ML methods in event studies used in securities litigation. At the same time, we find that ML-induced performance improvements are smaller than those based on other good practices. Most important are (i) the use of a peer index based on returns for firms in similar industries (how this is computed appears to be less important than that some version be included), and (ii) for significance testing, using the SQ test proposed in Gelbach et al.&nbsp;(2013), because it is robust to the considerable non-normality present in abnormal returns.</p>
 </section>
 <section id="important-figure" class="level2">
 <h2 class="anchored" data-anchor-id="important-figure">Important figure</h2>
-<p>The top panel of Fig. 3 illustrates the diagnostic test for Simulations 4, 5, and 6. Because the diagnostic test only applies to balanced panels, in constructing this figure our simulation is modified to artificially induce a balanced panel of firm-year observations from Compustat before drawing fixed effects and residuals from the empirical distribution.</p>
+<p>Figure 1 plots specification ranks. Each specification has 8 MSE performance values: two time periods (1999–2009 vs.&nbsp;2009–2019), with and without the FFC factors, and two MSE normalization approaches (<span class="math inline">\(\widehat{R}_{oos}^{k}\)</span> and <span class="math inline">\(\widehat{R}_{het}^k\)</span>, described below). Each gray dot represents a rank from 1 to 11, and each rank is represented once for each of the eight time-period/FFC-factor/MSE metric combinations. The diamonds plot the specifications’ average ranks. Blue diamonds signify models that allow firms to enter the regression function individually and use cross-validation and penalized regression; red diamonds represent specifications that do not.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="pic.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 3</figcaption><p></p>
+<p><img src="fig.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 1</figcaption><p></p>
 </figure>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">baker2016single</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={Single-firm event studies, securities fraud, and financial crisis: problems of inference},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Baker, Andrew C},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Stan. L. Rev.},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span>={68},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={1207},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2016},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={HeinOnline}</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">baker2020machine</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={Machine learning and predicted returns for event studies in securities litigation},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Baker, Andrew and Gelbach, Jonah B and others},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Journal of Law, Finance, and Accounting},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span>={5},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span>={2},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={231--272},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2020},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={Now Publishers, Inc.}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

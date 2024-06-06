@@ -7,10 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andrew C. Baker">
-<meta name="dcterms.date" content="2016-01-01">
-<meta name="description" content="Stanford Law Review 68 2016">
+<meta name="author" content="David F. Larcker">
+<meta name="author" content="Charles G. McClure">
+<meta name="author" content="Durgesh Saraph">
+<meta name="author" content="Edward M. Watts">
+<meta name="dcterms.date" content="2024-04-25">
 
-<title>Andrew C. Baker - How Much Should We Trust Staggered Difference-in-Differences Estimates?</title>
+<title>Andrew C. Baker - Diversity Washing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,22 +92,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<script src="../../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -126,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<link rel="stylesheet" href="../../../../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -136,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Andrew C. Baker</span>
     </a>
   </div>
@@ -146,13 +149,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html">About</a>
+    <a class="nav-link" href="../../index.html">About</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../files/Baker_CV.pdf">CV</a>
+    <a class="nav-link" href="../../files/Baker_CV.pdf">CV</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../research/index.html">Research</a>
+    <a class="nav-link" href="../../articles/index.html">Research</a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -198,9 +201,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#links" id="toc-links" class="nav-link active" data-scroll-target="#links">Links</a></li>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
   <li><a href="#important-figure" id="toc-important-figure" class="nav-link" data-scroll-target="#important-figure">Important figure</a></li>
+  <li><a href="#paper" id="toc-paper" class="nav-link" data-scroll-target="#paper">Paper</a></li>
   </ul>
 </nav>
     </div>
@@ -209,18 +212,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How Much Should We Trust Staggered Difference-in-Differences Estimates?</h1>
+<h1 class="title">Diversity Washing</h1>
 </div>
 
-<div>
-  <div class="description">
-    <em>Stanford Law Review</em> 68 2016
-  </div>
-</div>
 
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
   
     <div class="quarto-title-meta-contents">
     Andrew C. Baker 
@@ -228,6 +226,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="quarto-title-meta-contents">
         <p class="affiliation">
             Berkeley Law School
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    David F. Larcker 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Stanford GSB
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    Charles G. McClure 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Chicago Booth
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    Durgesh Saraph 
+  </div>
+      <div class="quarto-title-meta-contents">
+    Edward M. Watts 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Yale SOM
           </p>
       </div>
     </div>
@@ -238,47 +263,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 1, 2016</p>
+      <p class="date">April 25, 2024</p>
     </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/10.1111/1475-679X.12542">10.1111/1475-679X.12542</a>
+      </p>
+    </div>
+  </div>
   </div>
   
 
 </header>
 
-<section id="links" class="level2">
-<h2 class="anchored" data-anchor-id="links">Links</h2>
-<ul>
-<li><a href="2016_SLR_Note.pdf">Paper</a></li>
-<li><a href="Codes.zip">Code</a></li>
-<li><a href="Data.zip">Data</a></li>
-</ul>
-</section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Lawsuits brought pursuant to section 10(b) of the Securities and Exchange Act depend on the reliability of a statistical tool called an event study to adjudicate issues of reliance, materiality, loss causation, and damages. Although judicial acceptance of the event study technique is pervasive, there has been little empirical analysis of the ability of event studies to produce reliable results when applied to a single company’s security.</p>
-<p>Using data from the recent financial crisis, this Note demonstrates that the standard-model event study used in most court proceedings can lead to biased inferences sanctioned through the Daubert standard of admissibility for expert testimony. In particular, in the presence of broad market volatility, a base event study will cause too many returns to be identified as statistically significant. Even recently proposed variations of the event study model specifically designed to address violations of the statistical assumptions of an event study will not completely correct this bias.</p>
-<p>This Note proposes two alternative forms of event studies that are capable of creating statistically reliable results and should be adopted by courts in instances where there is cause to believe that market volatility has increased. Over previous decades, the judiciary has steadily moved toward a reliance on empirics and expert testimony in overseeing complex civil cases. Yet there has been surprisingly little research accompanying this judicial deference on the ability of statistical evidence to produce the promised result. This Note calls into question whether this movement has been beneficial from a logical or empirical perspective, but it demonstrates that alternative techniques that can aid the finder of fact in resolving these disputes—regardless of market trends—may in fact exist.</p>
+<p>We provide large-sample evidence on whether U.S. publicly traded corporations use voluntary disclosures about their commitments to employee diversity opportunistically. We document significant discrepancies between companies’ external stances on diversity, equity, and inclusion (DEI) and their hiring practices. Firms that discuss DEI excessively relative to their actual employee gender and racial diversity ("diversity washers") obtain superior scores from environmental, social, and governance (ESG) rating organizations and attract more investment from institutional investors with an ESG focus. These outcomes occur even though diversity-washing firms are more likely to incur discrimination violations and have negative human-capital-related news events. Our study provides evidence consistent with growing allegations of misleading statements from firms about their DEI initiatives and highlights the potential consequences of selective ESG disclosures.</p>
 </section>
 <section id="important-figure" class="level2">
 <h2 class="anchored" data-anchor-id="important-figure">Important figure</h2>
-<p>The top panel of Fig. 3 illustrates the diagnostic test for Simulations 4, 5, and 6. Because the diagnostic test only applies to balanced panels, in constructing this figure our simulation is modified to artificially induce a balanced panel of firm-year observations from Compustat before drawing fixed effects and residuals from the empirical distribution.</p>
+<p>Figure 5: Nonparametric summary of ESG outcomes by DEI discussion and diversity ranks. This figure&nbsp;presents the average of Refinitiv’s Overall Score (panel A), Refinitiv’s Social Score (panel B), Sustainalytics Overall Score (panel C), Sustainalytics Social Score (panel D), Ownership by US SIF funds (panel E), and Ownership by ESG funds, based on the fund name (panel F). Each heat map is broken down by the decile of DEI discussion (measured by the overall amount of DEI discussion in our corpus of SEC documents) and the decile of underlying diversity (measured by the percentage of a firm’s U.S.-based workforce that is either female or non-white)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="pic.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 3</figcaption><p></p>
+<p><img src="fig5.jpeg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 5</figcaption><p></p>
 </figure>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">baker2016single</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={Single-firm event studies, securities fraud, and financial crisis: problems of inference},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Baker, Andrew C},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Stan. L. Rev.},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span>={68},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={1207},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2016},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={HeinOnline}</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="paper" class="level2">
+<h2 class="anchored" data-anchor-id="paper">Paper</h2>
+<ul>
+<li><a href="diversity_washing.pdf">Paper</a></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">baker2022diversity</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={Diversity washing},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Baker, Andrew C and Larcker, David F and McCLURE, CHARLES G and Saraph, Durgesh and Watts, Edward M},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Journal of Accounting Research},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2022},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={Wiley Online Library}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

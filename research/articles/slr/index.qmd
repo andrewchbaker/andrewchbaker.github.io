@@ -1,5 +1,5 @@
 ---
-title: "Single-Firm Event Studies, Securities Fraud, and Financial Crisis: Problems of Inference"
+title: "How Much Should We Trust Staggered Difference-in-Differences Estimates?"
 date: 2016-01-01
 author:
   - name: Andrew C. Baker
@@ -22,6 +22,9 @@ Using data from the recent financial crisis, this Note demonstrates that the sta
 This Note proposes two alternative forms of event studies that are capable of creating statistically reliable results and should be adopted by courts in instances where there is cause to believe that market volatility has increased. Over previous decades, the judiciary has steadily moved toward a reliance on empirics and expert testimony in overseeing complex civil cases. Yet there has been surprisingly little research accompanying this judicial deference on the ability of statistical evidence to produce the promised result. This Note calls into question whether this movement has been beneficial from a logical or empirical perspective, but it demonstrates that alternative techniques that can aid the finder of fact in resolving these disputes—regardless of market trends—may in fact exist.
 
 ## Important figure
+
+The top panel of Fig. 3 illustrates the diagnostic test for Simulations 4, 5, and 6. Because the diagnostic test only applies to balanced panels, in constructing this figure our simulation is modified to artificially induce a balanced panel of firm-year observations from Compustat before drawing fixed effects and residuals from the empirical distribution.
+
 ![Figure 3](pic.png)
 
 ``` bibtex

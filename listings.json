@@ -11,5 +11,11 @@
       "/research/working_papers/antitakeover/index.html",
       "/research/working_papers/activism/index.html"
     ]
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/posts/DiD/index.html"
+    ]
   }
 ]

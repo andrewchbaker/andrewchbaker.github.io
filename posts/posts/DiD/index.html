@@ -365,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Imai and Kim (2019) [hereinafter IK (2019)] also consider the impact of TWFE on DiD estimates with multiple periods, and where units can switch in and out of treatment at different periods in time (this is different than, for example, CS (2018) which assumes treatment continues for the rest of the panel). IK (2019) uses a matching framework to propose a multi-period DiD estimator which eliminates the bias in the TWFE estimator. Their matching estimator is equivalent to a weighted two-way fixed effects regression estimator.</p>
 <p>Define a within-unit matched set as the group containing the observation of a treated unit from the previous time period if it is under the control condition (treat = <span class="math inline">\(X_{it}\)</span> = 0) and to be an empty set otherwise: <span class="math display">\[\mathcal{M}_{it} = \{(i^{'}, t^{'}) : i^{'} = i, t^{'} = t - 1, X_{i^{'}t^{'}} = 0\}\]</span> The within-time matched set is defined as a group of control observations in the same time period whose prior observations are also under the control condition: <span class="math display">\[\mathcal{N}_{it} = \{(i^{'}, t^{'}) : i^{'} \neq i, t^{'} = t, X_{i^{'}t^{'}} = X_{i^{'}, t^{'} - 1} \}\]</span> And the adjusted set, which contains the control observations in the previous period that share the same unit as those in <span class="math inline">\(\mathcal{N}_{it}\)</span>: <span class="math display">\[ \mathcal{A}_{it} = \{(i^{'}, t^{'}) : i^{'} \neq i, t^{'} = t - 1, X_{i^{'}t^{'}} = X_{i^{'}t} = 0 \} \]</span></p>
 <p>With these matched sets and adjustment sets, the multi-period DiD estimator is the average of 2x2 DiD estimators applied whenever there is a change from the control condition to the treatment condition (Note, I believe this methodology just looks at one-period effects, so rules out dynamic treatment effects). Then the treatment effect is <span class="math display">\[\hat{\tau} = \frac{1}{\sum_{i = 1}^N \sum_{t = 1}^T D_{it}} \sum_{i = 1}^N \sum_{t = 1}^T D_{it} \left(\widehat{Y_{it(1)}} - \widehat{Y_{it(0)}} \right)\]</span> where <span class="math inline">\(D_{i1} = 0 \forall i\)</span>, <span class="math inline">\(D_{it} = X_{it} \cdot 1\{|\mathcal{M}_{it}| \cdot |\mathcal{N}_{it}| &gt; 0\}\)</span> for <span class="math inline">\(t &gt; 1\)</span> and for <span class="math inline">\(D_{it} = 1\)</span> we define:</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
    \widehat{Y_{it}(x)} = \left\{
        \begin{array}
          YY_{it} &amp; \text{if } X_{it} = 1 \\
@@ -373,12 +373,12 @@ ul.task-list li input[type="checkbox"] {
          \frac{1}{|\mathcal{A}_{it}|} \sum_{(i^{'}, t^{'}) \in \mathcal{A}_{it}} Y_{i^{'}t^{'}} &amp; \text{if } X_{it} = 0
        \end{array}
        \right.
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 <p>In words, this means that when the treatment status of a unit changes from a control (<span class="math inline">\(X_{it} = 0\)</span>) at time <span class="math inline">\(t-1\)</span> to a treatment (<span class="math inline">\(X_{it} = 1\)</span>) at time <span class="math inline">\(t\)</span>, and there exists at least one other unit whose treatment status does not change in the same time periods, the counterfactual outcome for observation <span class="math inline">\((i, t)\)</span> is estimated by substracting from the realized outcome <span class="math inline">\(Y_{it}\)</span>, its own observed previous period outcome <span class="math inline">\(Y_{i, t-1}\)</span>, as well as the average outcome difference between the same two time periods among the other units whose treatment status does not turn on in time <span class="math inline">\(t\)</span>.</p>
 <p>With these sets and estimation strategy, the IK (2019) matching based DiD estimator is equivalent to the following weighted two-way fixed effect estimator:</p>
 <p><span class="math display">\[\hat{\tau} = \hat{\beta}_{WFE2} =  \underset{\beta}{\text{armin}} \sum_{i = 1}^N \sum_{t = 1}^T W_{it}\{(Y_{it} - \overline{Y}_i^* - \overline{Y}_t^* + \overline{Y}^*) - \beta(X_{it} - \overline{X}_i^* - \overline{X}_t^* + \overline{X}^*) \}^2 \]</span> where asterisks indicate weighted averages and the weights <span class="math inline">\(W_{it}\)</span> are given by:</p>
 <p><span class="math display">\[W_{it} = \sum_{i^{'} = 1}^N \sum_{t^{'} - 1}^T D_{i^{'}t^{'}} \cdot w_{it}^{i^{'}t^{'}}\]</span> and</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
    w_{it}^{i^{'}t^{'}} = \left\{
        \begin{array}
          11 &amp; \text{if } (i, t) = (i^{'}, t^{'}) \\
@@ -388,7 +388,7 @@ ul.task-list li input[type="checkbox"] {
          0 &amp; \text{otherwise}
        \end{array}
        \right.
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 </section>
 <section id="cengiz-dube-lindner-and-zipperer-2019" class="level2">
 <h2 class="anchored" data-anchor-id="cengiz-dube-lindner-and-zipperer-2019">Cengiz, Dube, Lindner, and Zipperer (2019)</h2>

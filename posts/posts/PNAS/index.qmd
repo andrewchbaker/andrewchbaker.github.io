@@ -5,16 +5,16 @@ description: "Blogpost documenting the sensitivity of estimates of the effect of
 author:
   - name: Andrew C. Baker
     affiliation: Berkeley Law School
-output: 
-  html_document:
-    code_folding: hide
+format: 
+  html:
+    code-fold: true
     toc: true
     toc_float: true
 ---
 
 # Introduction
 
-In this post I expand on the implications of recent econometric work on issues with difference-in-difference (DiD) designs with staggered treatment rollout. For a longer discussion of these issues, and the details of new proposed modifications to the standard two-way fixed effect regression-based DiD models, refer to my prior post [here](https://andrewchbaker.github.io/posts/posts/DiD/). Here I will demonstrate the practical importance of correcting for these issues with staggered DiD on a live policy issue - whether the adoption of legalized medical cannabis laws has a causal effect on opioid overdose mortality.
+In this post I expand on the implications of recent econometric work on issues with difference-in-difference (DiD) designs with staggered treatment rollout. For a longer discussion of these issues, and the details of new proposed modifications to the standard two-way fixed effect regression-based DiD models, refer to my prior post [here](https://andrewcbaker.netlify.com/2019/09/25/difference-in-differences-methodology/). Here I will demonstrate the practical importance of correcting for these issues with staggered DiD on a live policy issue - whether the adoption of legalized medical cannabis laws has a causal effect on opioid overdose mortality.
 
 The potential beneficial impact of legal medical marijuana has been debated since [$\color{blue}{\text{Bachhuber et al. 2014}}$](https://www.ncbi.nlm.nih.gov/pubmed/25154332). Using a staggered DiD design $\color{blue}{\text{Bachhuber et al. 2014}}$ found that states with medical cannabis laws experienced a slower increase in opioid overdose mortality over the period 1999-2010. Given the recent opioid epidemic, and the accompanying increase in "deaths of despair" around the country, this result generated substantial academic and popular attention. At the time of this writing, the paper has been cited over 500 times since publication.
 
@@ -36,7 +36,7 @@ library(bacondecomp)
 library(MCPanel)
 library(kableExtra)
 library(multcomp)
-library(did2)
+library(did)
 library(gsynth)
 library(panelView)
 
@@ -59,8 +59,9 @@ bind_rows(
 ) %>% 
   # run the models by dataset
   group_by(df) %>% 
-  do(fit = felm(model_formula, data = ., exactDOF = TRUE, cmethod = "reghdfe")) %>% 
-  broom::tidy(fit, conf.int = TRUE) %>% 
+  do(broom::tidy(felm(ln_age_mort_rate ~ Medical_Cannabis_Law + rxdmp_original + 
+               rxid_original + pmlaw_original + unemployment | state + Year | 0 | 0, data = ., 
+               exactDOF = TRUE, cmethod = "reghdfe"), conf.int = TRUE)) %>% 
   # keep just the variables we are going to plot
   filter(term == "Medical_Cannabis_Law") %>%
   # keep just the variables we need
@@ -92,7 +93,7 @@ So we're pretty close to matching. The point estimates are close to spot on, whi
 In addition, I will plot the state law changes so we can see how the identification is working with the staggered rollout.
 
 ```{r panelView, warning = FALSE, message = FALSE, fig.align = 'center'}
-panelView(ln_age_mort_rate ~ TREAT, 
+panelview(ln_age_mort_rate ~ TREAT, 
           data = as.data.frame(data %>% mutate(TREAT = ifelse(Medical_Cannabis_Law > 0, 1, 0))),
           index = c("state", "Year"), pre.post = TRUE,
           theme.bw = 1)
@@ -187,8 +188,7 @@ model_formula_es <- as.formula(
 bind_rows(data %>% mutate(df = "1999-2017"), data_2010 %>% mutate(df = "1999-2010")) %>% 
   # run the models by dataset
   group_by(df) %>% 
-  do(fit = felm(model_formula_es, data = ., exactDOF = TRUE, cmethod = "reghdfe")) %>% 
-  broom::tidy(fit, conf.int = TRUE) %>% 
+  do(broom::tidy(felm(model_formula_es, data = ., exactDOF = TRUE, cmethod = "reghdfe"), conf.int = TRUE)) %>% 
   # keep just the variables we are going to plot
   filter(term %in% covariates_interest) %>% 
   # reformat d data
@@ -237,8 +237,7 @@ withcontrols <- bind_rows(
 ) %>% 
   # run the models by dataset
   group_by(df) %>% 
-  do(fit = felm(model_formula, data = ., exactDOF = TRUE, cmethod = "reghdfe")) %>% 
-  broom::tidy(fit, conf.int = TRUE) %>% 
+  do(broom::tidy(felm(model_formula, data = ., exactDOF = TRUE, cmethod = "reghdfe"), conf.int = TRUE)) %>% 
   # keep just the variables we are going to plot
   filter(term == "Medical_Cannabis_Law") %>%
   # keep just the variables we need
@@ -253,8 +252,7 @@ nocontrols <- bind_rows(
 ) %>% 
   # run the models by dataset
   group_by(df) %>% 
-  do(fit = felm(model_formula_nocontrols, data = ., exactDOF = TRUE, cmethod = "reghdfe")) %>% 
-  broom::tidy(fit, conf.int = TRUE) %>% 
+  do(broom::tidy(felm(model_formula_nocontrols, data = ., exactDOF = TRUE, cmethod = "reghdfe"), conf.int = TRUE)) %>% 
   # keep just the variables we are going to plot
   filter(term == "Medical_Cannabis_Law") %>%
   # keep just the variables we need
@@ -533,8 +531,7 @@ rundid <- function(st) {
   
   # run regs over the models
     did_data %>%
-      do(fit = felm(formula_cldz, data = ., exactDOF = TRUE, cmethod = "reghdfe")) %>%
-      broom::tidy(fit, conf.int = TRUE) %>%
+      do(broom::tidy(felm(formula_cldz, data = ., exactDOF = TRUE, cmethod = "reghdfe"), conf.int = TRUE)) %>%
       # keep just the indicator variable
       filter(term == "Medical_Cannabis_Law") %>% 
       # add in additional needed variables
@@ -608,8 +605,7 @@ stacked_data <- map_df(obs, getdata)
 # estimate the model on our stacked data
 stacked_data %>% 
   # fit the model
-  do(fit = felm(formula_cldz2, data = ., exactDOF = TRUE, cmethod = "reghdfe")) %>% 
-  broom::tidy(fit, conf.int = TRUE) %>% 
+  do(broom::tidy(felm(formula_cldz2, data = ., exactDOF = TRUE, cmethod = "reghdfe"), conf.int = TRUE)) %>% 
   # keep just the variables we are going to plot
   filter(term %in% covariates_interest) %>% 
   # make a relative time variable
@@ -647,23 +643,29 @@ $$ATT(g, t) = \mathbb{E} \left[\left( \frac{G_g}{\mathbb{E}[G_g]} - \frac{\frac{
 ```{r CS1, warning = FALSE, message = FALSE, error = FALSE, fig.align = 'center'}
 # need to replace the adopt year to 0 if missing
 data_CS <- data_no_ND %>% 
-  mutate(adopt_year = ifelse(is.na(adopt_year), 0, adopt_year))
+  mutate(adopt_year = ifelse(is.na(adopt_year), 0, adopt_year),
+         state_num = rank(state))
          
 # run the CS algorithm
-CS_out <- att_gt("ln_age_mort_rate2", data = data_CS,
-                first.treat.name="adopt_year",
-                idname="state", tname="Year", aggte = T,
-                bstrap=T, cband=T,
-                maxe = 3,
-                mine = -3,
-                nevertreated = T,
-                printdetails = F)
+CS_out <- att_gt(yname = "ln_age_mort_rate2", 
+                 data = data_CS,
+                 gname="adopt_year",
+                idname="state_num", 
+                tname="Year",
+                bstrap=T, 
+                cband=T,
+                # maxe = 3,
+                # mine = -3,
+                control_group = "nevertreated",
+                base_period = "universal")
+
+CS_agg = aggte(CS_out, type = "dynamic", min_e = -3, max_e = 3)
 
 #plot
 tibble(
   t = -3:3,
-  estimate = CS_out$aggte$dynamic.att.e,
-  se = CS_out$aggte$dynamic.se.e,
+  estimate = CS_agg$att.egt,
+  se = CS_agg$se.egt,
   conf.low = estimate - 1.96*se,
   conf.high = estimate + 1.96*se,
 ) %>% 
@@ -692,20 +694,25 @@ We can also estimate the model allowing for future treated units to enter as con
 
 ```{r CS2, warning = FALSE, message = FALSE, error = FALSE, fig.align = 'center'}
 # run the CS algorithm
-CS_out <- att_gt("ln_age_mort_rate2", data = data_CS,
-                first.treat.name="adopt_year",
-                idname="state", tname="Year", aggte = T,
-                bstrap=T, cband=T,
-                maxe = 3,
-                mine = -3,
-                nevertreated = F,
-                printdetails = F)
+CS_out <- att_gt(yname = "ln_age_mort_rate2", 
+                 data = data_CS,
+                 gname="adopt_year",
+                idname="state_num", 
+                tname="Year",
+                bstrap=T, 
+                cband=T,
+                # maxe = 3,
+                # mine = -3,
+                control_group = "notyettreated",
+                base_period = "universal")
+
+CS_agg = aggte(CS_out, type = "dynamic", min_e = -3, max_e = 3)
 
 #plot
 tibble(
   t = -3:3,
-  estimate = CS_out$aggte$dynamic.att.e,
-  se = CS_out$aggte$dynamic.se.e,
+  estimate = CS_agg$att.egt,
+  se = CS_agg$se.egt,
   conf.low = estimate - 1.96*se,
   conf.high = estimate + 1.96*se,
 ) %>% 
@@ -760,31 +767,47 @@ out$est.att %>%
 
 This seems to suggest a short term positive treatment effect, followed by a potential reversal, although the number of states with many post-treatment years is small so the confidence intervals are large.
 
-## Matrix Completion
+<!-- ## Matrix Completion -->
 
-Finally, we can estimate the relationship through the matrix completion method of Athey, Bayati, Doudchenko, Imbens, and Khosvari, as implemented through the *gsynth* package.
+<!-- Finally, we can estimate the relationship through the matrix completion method of Athey, Bayati, Doudchenko, Imbens, and Khosvari, as implemented through the *gsynth* package.  -->
 
-```{r MC, message = FALSE, warning = FALSE, results = 'hide'}
-# estimate the generalized synthetic control m ethod
-out <- gsynth(ln_age_mort_rate2 ~ TREAT, data = data_no_ND, index = c("state", "Year"), estimator = "mc",
-              force = "two-way", CV = TRUE, se = TRUE, nboots = 1000, cores = 4, r = c(0, 3), 
-              min.T0 = 4)
+<!-- ```{r MC, message = FALSE, warning = FALSE, results = 'hide'} -->
 
-#plot
-out$est.att %>% 
-  as_tibble(rownames = "t") %>% 
-  mutate(t = as.numeric(t)) %>% 
-  ggplot(aes(x = t, y = ATT)) + 
-  geom_ribbon(aes(ymin = CI.lower, ymax = CI.upper), color = "lightgrey", alpha = 1/2) + 
-  geom_line(color = "red") + 
-  geom_point(color = "red") + 
-  geom_hline(yintercept = 0) + 
-  geom_vline(xintercept = -0.5, linetype = "dashed") + 
-  theme(axis.title.x = element_blank()) + 
-  theme_bw() + 
-  theme(axis.title.x = element_blank())
+<!-- # estimate the generalized synthetic control m ethod -->
 
-```
+<!-- out <- gsynth(ln_age_mort_rate2 ~ TREAT, data = data_no_ND, index = c("state", "Year"), estimator = "mc", -->
+
+<!--               force = "two-way", CV = TRUE, se = TRUE, nboots = 1000, cores = 4, r = c(0, 3),  -->
+
+<!--               min.T0 = 4) -->
+
+<!-- #plot -->
+
+<!-- out$est.att %>%  -->
+
+<!--   as_tibble(rownames = "t") %>%  -->
+
+<!--   mutate(t = as.numeric(t)) %>%  -->
+
+<!--   ggplot(aes(x = t, y = ATT)) +  -->
+
+<!--   geom_ribbon(aes(ymin = CI.lower, ymax = CI.upper), color = "lightgrey", alpha = 1/2) +  -->
+
+<!--   geom_line(color = "red") +  -->
+
+<!--   geom_point(color = "red") +  -->
+
+<!--   geom_hline(yintercept = 0) +  -->
+
+<!--   geom_vline(xintercept = -0.5, linetype = "dashed") +  -->
+
+<!--   theme(axis.title.x = element_blank()) +  -->
+
+<!--   theme_bw() +  -->
+
+<!--   theme(axis.title.x = element_blank()) -->
+
+<!-- ``` -->
 
 # Conclusion
 

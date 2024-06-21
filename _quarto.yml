@@ -18,6 +18,8 @@ website:
         text: "CV"
       - text: "Research"
         file: research/index.qmd
+      - text: "Posts"
+        file: posts/index.qmd
     right:
       - icon: twitter
         href: https://twitter.com/andrew___baker
